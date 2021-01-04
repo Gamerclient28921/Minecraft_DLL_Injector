@@ -58,18 +58,7 @@ namespace Minecraft_DLL_Injector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog FileIn = new OpenFileDialog();
-            if(FileIn.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                if (FileIn.SafeFileName.ToLower().EndsWith(".dll"))
-                {
-                       InjectDLL("Wave.dll");
-                    
-                } else
-                {
-                    MessageBox.Show("You did not specify Wave DLL!");
-                }
-            }
+             InjectDLL("Wave.dll");
         }
 
         public static void InjectDLL(string DLLPath)
