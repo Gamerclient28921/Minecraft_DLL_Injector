@@ -63,14 +63,7 @@ namespace Minecraft_DLL_Injector
             {
                 if (FileIn.SafeFileName.ToLower().EndsWith(".dll"))
                 {
-                    if(FileIn.FileName.ToLower() == "wave.dll")
-                    {
-                        InjectDLL(FileIn.FileName);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Not a Wave dll");
-                    }
+                       InjectDLL("Wave.dll");
                     
                 } else
                 {
