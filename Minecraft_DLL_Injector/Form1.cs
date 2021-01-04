@@ -15,7 +15,7 @@ using System.IO;
 
 namespace Minecraft_DLL_Injector
 {
-    public partial class Form1 : Form
+    public partial class WaveInjector : Form
     {
         [DllImport("kernel32.dll")]
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
@@ -51,7 +51,7 @@ namespace Minecraft_DLL_Injector
 
         static bool alreadyAttemptedInject = false;
 
-        public Form1()
+        public WaveInjector()
         {
             InitializeComponent();
         }
@@ -63,10 +63,18 @@ namespace Minecraft_DLL_Injector
             {
                 if (FileIn.SafeFileName.ToLower().EndsWith(".dll"))
                 {
-                    InjectDLL(FileIn.FileName);
+                    if(FileIn.FileName == "Wave.dll")
+                    {
+                        InjectDLL(FileIn.FileName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not a Wave dll");
+                    }
+                    
                 } else
                 {
-                    MessageBox.Show("You did not specify a DLL!");
+                    MessageBox.Show("You did not specify Wave DLL!");
                 }
             }
         }
@@ -114,6 +122,11 @@ namespace Minecraft_DLL_Injector
             FileSecurity fSecurity = InfoFile.GetAccessControl();
             fSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier("S-1-15-2-1"), FileSystemRights.FullControl, InheritanceFlags.None, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
             InfoFile.SetAccessControl(fSecurity);
+        }
+
+        private void WaveInjector_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
